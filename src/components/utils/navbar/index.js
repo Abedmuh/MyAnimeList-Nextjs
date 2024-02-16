@@ -1,4 +1,5 @@
 import Link from "next/link"
+import InputSearch from "./InputSearch"
 
 const Navbar = () => {
   return (
@@ -11,8 +12,8 @@ const Navbar = () => {
             <Link href="/" className="text-white font-bold text-2xl">Myanimelist</Link>
           </div>
           <div className="flex gap-4 mr-2">
-            <Link href="/login">Login</Link>
-            <Link href="/register">Register</Link>
+            <button className="bg-slate-800 text-white w-36 rounded-md">Login</button>
+            <button className="bg-sky-900 text-white w-36 rounded-md">Register</button>
           </div>
         </div>
 
@@ -23,9 +24,7 @@ const Navbar = () => {
             <Link href="/" className="text-white">Help</Link>
             <Link href="/" className="text-white">About</Link>
           </div>
-          <div>
-            <input placeholder="  find Anime..."></input>
-          </div>
+          <InputSearch />
         </div>
       </div>
     </header>
