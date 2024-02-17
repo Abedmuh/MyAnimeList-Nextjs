@@ -1,13 +1,11 @@
-"use client"
 import Header from "@/components/Animelist/Header";
 import AnimeList from "@/components/Animelist";
-import { useSearchParams } from "next/navigation";
 
-const Page = async () => {
-  const searchParams = useSearchParams()
-  const querry = searchParams.get('q')
+const Page = async ({ params }) => {
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${querry}`)
+  const keywords = decodeURI(params.keyword)
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${keywords}`)
   const anime = await response.json()
   return (
     <>

@@ -1,6 +1,5 @@
 import AnimeList from "@/components/Animelist";
 import Header from "@/components/Animelist/Header";
-import Link from "next/link";
 
 const Home = async () => {
 
@@ -8,7 +7,6 @@ const Home = async () => {
   const anime = await response.json()
   return (
     <main>
-
       <section>
         <Header title="Paling Populer" linkref="/populer" />
         <AnimeList api={anime} />
