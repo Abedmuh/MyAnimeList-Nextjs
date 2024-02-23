@@ -1,18 +1,18 @@
 import AnimeList from "@/components/Animelist";
 import Header from "@/components/Animelist/Header";
+import { getAnime } from "../libs/koneksi";
 
-const Home = async () => {
+const Page = async () => {
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`)
-  const anime = await response.json()
+  const topAnime = await getAnime("top/anime","limit=8")
   return (
     <main>
       <section>
         <Header title="Paling Populer" linkref="/populer" />
-        <AnimeList api={anime} />
+        <AnimeList api={topAnime} />
       </section>
     </main>
   );
 }
 
-export default Home
+export default Page

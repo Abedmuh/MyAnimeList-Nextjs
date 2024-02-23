@@ -1,7 +1,9 @@
 import Link from "next/link"
 import InputSearch from "./InputSearch"
+import User from "./UserLogin"
 
 const Navbar = () => {
+
   return (
     <header className="bg-sky-600">
       <div className="max-w-5xl mx-auto">
@@ -12,8 +14,7 @@ const Navbar = () => {
             <Link href="/" className="text-white font-bold text-2xl">Myanimelist</Link>
           </div>
           <div className="flex gap-4 mr-2">
-            <button className="bg-slate-800 text-white w-36 rounded-md">Login</button>
-            <button className="bg-sky-900 text-white w-36 rounded-md">Register</button>
+            <User/>
           </div>
         </div>
 

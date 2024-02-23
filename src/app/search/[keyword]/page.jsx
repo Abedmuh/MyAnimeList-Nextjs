@@ -1,12 +1,12 @@
 import Header from "@/components/Animelist/Header";
 import AnimeList from "@/components/Animelist";
+import { getAnime } from "@/libs/koneksi";
 
 const Page = async ({ params }) => {
 
   const keywords = decodeURI(params.keyword)
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${keywords}`)
-  const anime = await response.json()
+  
+  const anime = await getAnime("anime", `q=${keywords}`) 
   return (
     <>
       <main>
