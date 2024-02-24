@@ -14,6 +14,18 @@ model AnimeList {
   id            Int @id @default(autoincrement())
   anime_mal_id  String 
   user_email    String
+  title          String
+  image         String?
 
   @@unique([user_email, anime_mal_id])
+}
+
+model mangaList {
+  id            Int @id @default(autoincrement())
+  manga_mal_id  String 
+  user_email    String
+  title         String
+  image         String?
+
+  @@unique([user_email, manga_mal_id])
 }

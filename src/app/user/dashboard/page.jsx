@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const Page = async () => {
   const data = await getServerSession(authOptions)
-  console.log(data.user.name);
   return (
     <>
     <main>

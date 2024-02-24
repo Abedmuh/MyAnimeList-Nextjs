@@ -3,17 +3,14 @@
 const { default: YouTube } = require("react-youtube")
 
 const VideoPlayer = ({youtubeId}) => {
-  const option = {
-    width: "300",
-    height: "250"
-  }
+
   return(
     <>
-    <div>
-      <button></button>
+    <div className="videoWrapper">
       <YouTube 
       videoId={youtubeId} 
-      onReady={(event) => event.target.pauseVideo()}/>
+      onReady={(event) => event.target.pauseVideo()}
+      />
     </div>
     </>
   )

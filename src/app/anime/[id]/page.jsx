@@ -3,14 +3,14 @@ import AddButton from "./Component"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import prisma from "@/libs/prisma"
+import VideoPlayer from "@/components/utils/VideoPlayer"
 
 const Page = async ({params}) => {
   const user = await getServerSession(authOptions)
   const anime = await getAnime(`anime/${params.id}`)
   const myanimelist = await prisma.AnimeList.findFirst({
-    where: {user_email: user.user?.email, anime_mail_id: params.id}
+    where: {user_email: user.user?.email, anime_mal_id: params.id}
   })
-
   return (
     <>
       <main>
@@ -20,12 +20,18 @@ const Page = async ({params}) => {
           <ul>
             <li><h2>{anime.data.title}</h2></li>
             <li><h2>{anime.data.score}</h2></li>
-            <AddButton anime_mal_id={params.id} user_email={user.user.email}/>
+            <AddButton 
+            anime_mal_id={params.id} 
+            user_email={user.user.email} 
+            stats={myanimelist ? "Remove from MyList" : "Add to MyList"} 
+            title={anime.data.title} 
+            image={anime.data.images.webp.image_url}/>
           </ul>
         </div>
-        <div className="grid col-span-3 mx-4 border-white border-2 p-2">
-          <h1>Biography</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio incidunt voluptas, illo dolorem magnam illum quas consectetur sed, itaque vel laboriosam ut ea impedit earum magni totam unde. Cumque quasi odio autem repudiandae corrupti ea, libero aut veniam fugiat ad deserunt porro, laboriosam corporis maiores placeat? Illum quia veniam, asperiores quod molestiae adipisci earum consequuntur dolorum, voluptatum rerum quibusdam officiis accusamus beatae obcaecati voluptates eos. Doloremque accusantium tempore veniam! Harum maxime ipsum quas, corporis esse eum odit adipisci? Itaque, in porro esse aut at quo labore aperiam cum repudiandae officia nesciunt sequi unde excepturi distinctio earum quis a quas quidem.</p>
+        <div className="grid col-span-3 mx-4 border-white border-2 p-2 gap-4">
+          <h1>Synopsis</h1>
+          <p>{anime.data.synopsis}</p>
+          <VideoPlayer youtubeId={anime.data.trailer.youtube_id}/>
           <div className="grid grid-cols-2">
             <div>
               Stats
