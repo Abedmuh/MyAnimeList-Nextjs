@@ -2,14 +2,17 @@ const { default: prisma } = require("@/libs/prisma")
 
 export async function POST(request) {
   try {
-    const { malId, userId, title, image } = await request.json()
+    const { malId, userId, title, image, rating, review } = await request.json()
+
     const data = {
       anime_mal_id: malId,
       user_email: userId,
       title,
-      image
+      image,
+      rating: Number(rating),
+      review
     }
-    const myAnimeList = await prisma.AnimeList.create({ data })
+    const myAnimeList = await prisma.animeList.create({ data })
     if (!myAnimeList) {
       return Response.json({
         status: 500
@@ -29,7 +32,7 @@ export async function POST(request) {
 export async function DELETE(request) {
   try {
     const { malId, userId, title, image } = await request.json()
-    await prisma.AnimeList.deleteMany({
+    await prisma.animeList.deleteMany({
       where: {
         anime_mal_id: malId,
         user_email: userId,

@@ -17,8 +17,7 @@ const AddButton = ({ anime_mal_id, user_email ,title, image, stats }) => {
     }).catch(err => {
       console.log(err)
     })
-    const list = await response?.json();
-    console.log(list);
+    const list = await response.json();
     if (list) {
       txtButton === "Remove from MyList" ? setTxtButton("Add to MyList") : setTxtButton("Remove from MyList")
     }

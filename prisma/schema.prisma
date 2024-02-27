@@ -10,22 +10,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model AnimeList {
+model animeList {
   id            Int @id @default(autoincrement())
   anime_mal_id  String 
-  user_email    String
-  title          String
+  title         String
   image         String?
+  user_email    String
+  rating        Int?        
+  review        String?
+  listtag       tag[]
 
   @@unique([user_email, anime_mal_id])
 }
 
 model mangaList {
-  id            Int @id @default(autoincrement())
+  id            Int         @id @default(autoincrement())
   manga_mal_id  String 
   user_email    String
   title         String
   image         String?
+  rating        Int?      
+  review        String?
+  listtag       tag[]
 
   @@unique([user_email, manga_mal_id])
+}
+
+model tag {
+  id            Int       @id @default(autoincrement())
+  name          String
+  user_email    String    
+  listAnime     animeList[]
+  listManga     mangaList[]
+
+  @@unique([user_email, name])
 }
