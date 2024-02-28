@@ -20,8 +20,6 @@ const Navbar = () => {
 
         <div className="flex justify-between pt-2 pb-4">
           <div className="flex gap-4">
-            <Link href="/" className="text-white">Anime</Link>
-            <Link href="/" className="text-white">Manga</Link>
             <Link href="/" className="text-white">Help</Link>
             <Link href="/" className="text-white">About</Link>
           </div>

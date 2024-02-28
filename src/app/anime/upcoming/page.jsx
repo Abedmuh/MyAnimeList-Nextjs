@@ -10,7 +10,7 @@ const Page = () => {
   const [topAnime,setTopAnime] = useState([])
 
   const fetchData = async () => {
-    const data = await getAnime("top/anime",`page=${pages}`)
+    const data = await getAnime("seasons/upcoming",`page=${pages}`)
     setTopAnime(data)
   }
 

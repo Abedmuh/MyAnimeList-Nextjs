@@ -8,13 +8,11 @@ import Image from "next/image"
 const Page = async () => {
   const user = getServerSession(authOptions)
   
-  const myAnimeList = await prisma.AnimeList.findMany({
+  const myAnimeList = await prisma.animeList.findMany({
     where: {
       user_email: user
     },
   })
-  console.log(myAnimeList);
-
   return (
     <>
     <main>
